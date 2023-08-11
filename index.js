@@ -1,27 +1,28 @@
 const express = require('express')
 const hbs = require('hbs')
-const sqlite = require('sqlite3')
-const db = new sqlite.Database('game')
+const sqlite = require('sqlite3').verbose()
+const db = new sqlite.Database('game.db')
 const app = express()
 app.set('view engine', 'hbs')
 
 //include a class
-app.get('/registration', async (req, res) => {
+app.get('/registration', (req, res) => {
     res.render('registration')
 })
 //accept a class
-app.post('/registration', async (req, res) => {
+app.post('/registration', (req, res) => {
     var sql = `insert into classes values (${req.params.name})`
     db.run(sql, (results) => {
-        res.redirect('/rooms')
+        res.redirect('/class')
     })
 })
 
 //get included classes
-app.get('/rooms', async (req, res) => {
+app.get('/class', (req, res) => {
     var sql = `select * from classes`
-    db.all(sql, (results) => {
-        res.render('rooms', results)
+    db.run(sql, (results) => {
+        console.log(results)
+        res.render('class', results)
     })
 })
 
@@ -29,7 +30,7 @@ app.get('/rooms', async (req, res) => {
 app.get('/game', async (req, res) => {
     var viewData = {};
     viewData.documentNumber = Math.round((Math.random() * 10000) + 9999)
-    viewData.target = `https://www.federalregister.gov/api/v1/documents/2023-${viewData.documentNumber}.json?fields[]=abstract`
+    viewData.target = `https://www.federalregister.gov/api/v1/documents/${(new Date.getFullYear() - 1)}-${viewData.documentNumber}.json?fields[]=abstract`
     
     await fetch(viewData.target)
         .then((response) => { 
@@ -38,12 +39,14 @@ app.get('/game', async (req, res) => {
             }
             return response.json()
         })
-        .then((data) => {
+        .then(async (data) => {
             //if not found to be a document
             if (data.status == 404) {
                 viewData.abstract = "Please retry the game, there was an error"
             }else{
-                console.log(data);
+                //write to db // 
+                var sql = `insert into contests values (${null}, ${Date.getFullYear() - 1}, ${viewData.documentNumber} )`
+                await db.run(sql)
                 viewData = data
                 res.render('game', viewData)
             }
@@ -59,8 +62,18 @@ app.get('/game', async (req, res) => {
 
     })
 
-    app.get('/',(req, res)=>{
-        res.render('index')
+app.post('/game', async (req, res) => {
+    var answersGiven = req.params
+    var answersSql = `select * from contests where id = ${answersGiven.id};`
+
+    await db.run(answersSql, (results) => {
+        console.log(results)
+        res.render('gameAnswered', results)   
     })
+})
+
+app.get('/',(req, res)=>{
+    res.render('index')
+})
 
 app.listen(5000)
