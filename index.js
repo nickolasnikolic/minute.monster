@@ -1,9 +1,15 @@
 const express = require('express')
 const hbs = require('hbs')
+const hsc = require('htmlspecialchars')
 const sqlite = require('sqlite3').verbose()
 const db = new sqlite.Database('game.db')
 const app = express()
 app.set('view engine', 'hbs')
+
+//api key
+const apiKey = "yC2ygW8UjAfcr27AeQiadCKV09hKfo5PvLOcyVog"
+
+app.use('/assets', express.static(__dirname + '/assets'))
 
 //include a class
 app.get('/registration', (req, res) => {
@@ -29,8 +35,10 @@ app.get('/class', (req, res) => {
 //run the game
 app.get('/game', async (req, res) => {
     var viewData = {};
-    viewData.documentNumber = Math.round((Math.random() * 10000) + 9999)
-    viewData.target = `https://www.federalregister.gov/api/v1/documents/${(new Date.getFullYear() - 1)}-${viewData.documentNumber}.json?fields[]=abstract`
+
+    var randomPage = Math.round((3 + (Math.random() * 100)))
+    
+    viewData.target = `https://api.nal.usda.gov/fdc/v1/foods/list?dataType=Branded&pageSize=20&pageNumber=${randomPage}&api_key=yC2ygW8UjAfcr27AeQiadCKV09hKfo5PvLOcyVog`
     
     await fetch(viewData.target)
         .then((response) => { 
@@ -44,9 +52,7 @@ app.get('/game', async (req, res) => {
             if (data.status == 404) {
                 viewData.abstract = "Please retry the game, there was an error"
             }else{
-                //write to db // 
-                var sql = `insert into contests values (${null}, ${Date.getFullYear() - 1}, ${viewData.documentNumber} )`
-                await db.run(sql)
+                console.log(data);
                 viewData = data
                 res.render('game', viewData)
             }
@@ -57,7 +63,6 @@ app.get('/game', async (req, res) => {
             viewData.data = {}
             viewData.abstract = 'Could not find data; some error occurred. Please reload.'
             res.render('game', viewData)
-
         })
 
     })
