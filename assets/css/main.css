@@ -1,6 +1,7 @@
 body{
     background-color: orangered;
     font-family: 'caviardreams';
+    list-style-image: url('../images/noun-happy-1418658.svg');
 }
 h1,h2,h3,h4,h5,h6{
     font-family: 'chunkfive';
@@ -42,34 +43,27 @@ div:hover{
 }
 
 header{
-    font-size: 3em;
+    font-size: 2em;
+    position: inherit;
     color: #fee3bb;
     width: 100%;
-    max-height: 172px;
-    gap: 3em;
 }
 
 header h1{
-    text-shadow: #022929 3px 30px 20px;
+    font-size: 3em;
+    text-shadow: #056767 3px 30px 20px;
     transform: rotate(5deg);
     position: absolute;
     top: 0px;
     left: 1em;
     z-index: 10000;
 }
-header audio{
-    position:absolute;
-    right: 1em;
-    top: 4px;
-}
 section{
-    transform: rotate(-0.1deg);
-}
-section{
+    background-image: url('../images/grass.jpg');
+    transform: rotate(-0.5deg);
     display:flex;
     flex-wrap: wrap;
     gap: 5em;
-    color: darkblue;
     padding: 3em;
     height: fit-content;
     margin: 199px 23px;
@@ -77,8 +71,10 @@ section{
     border-radius: 20px;
 }
 article div{
+    color: darkblue;
     transform: rotate(10deg);
     background-color: aliceblue;
+    list-style-type:square;
     flex: 1 2 30em;
     min-width: 25em;
     padding: 2em;
@@ -90,6 +86,7 @@ article div{
 article div:hover{
     transform: rotate(-12deg);
 }
+
 #rules > article:nth-child(1) > div{
     transition: none;
     transform: rotate(-12deg);
@@ -128,18 +125,9 @@ button:hover{
 #display > article:nth-last-child(3){ display: none; }
 #display > article:nth-last-child(2){ display: none; }
 
-#rules{
-    background-image:url('../images/grass.jpg');
-}
 #display{
     background-image:url('../images/carpet.jpg');
     background-attachment: fixed;
-}
-
-#clock{
-    position:fixed;
-    right: 1em;
-    top: 3em;
 }
 
 .minutemonster{

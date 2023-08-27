@@ -6,46 +6,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>minute.monster game</title>
     <link href="./assets/fonts/stylesheet.css" rel="stylesheet" />
-    <link href="./assets/css/main2.css" rel="stylesheet" />
+    <link href="./assets/css/main.css" rel="stylesheet" />
 </head>
 <body>
     <header>
         <h1>The <span class="minutemonster"></span>Minute Monster</span> Game!</h1>
-        <audio controls autoplay muted>
-            <source src="./assets/sound/Kids_Fun.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+        <section>
+            <article id="rules">
+                    <h2>Rules of the game:</h2>
+                    <ul>
+                        <li>Find the healthiest food for your shopping list!</li>
+                        <li>Collect healthy calories until time runs out!</li>
+                        <li>You've got 10 minutes to start, but the faster you go (!!!) the less time your opponents have!</li>
+                        <li>Whomever can collect the healthiest 2500 calories in the least amount of time WINS!!!</li>
+                        <li>But don't go over 2500 calories, <span>otherwise the Minute Monster gets you!!!</span></li>
+                    </ul>
+            </article>
+        </section>
+        <section>
+        <article id="clock">
+            <h2>Clock</h2>
+        </article>
+            <article id="food">
+                    <h2>Minute.Monster Shopping List:</h2>
+                    <ul>
+                    <li id="calories">Total Calorie Count (enough of, but not too much!): <strong>0</strong> calories</li>
+                    <li id="carbs">Total Carbohydrates (enough of): <strong>0</strong> grams</li>
+                    <li id="calcium">Total Calcium (enough of): <strong>0</strong> grams</li>
+                    <li id="protein">Total Protein (enough of): <strong>0</strong> grams</li>
+                    <li id="fiber">Total Protein (enough of): <strong>0</strong> grams</li>
+                    <li id="vitamins">Total Vitamins By Mass (most of): <strong>0</strong> grams</li>
+                    <li id="sodium">Total Sodium (less of): <strong>0</strong> grams</li>
+                    <li id="cholesterol">Total Cholesterol (least of): <strong>0</strong> grams</li>
+                    <li id="fats">Total Fats (least of): <strong>0</strong> grams</li>
+
+                    </ul>
+            </article>
+        </section>
     </header>
-    <section id="rules">
-        <article>
-            <div>
-                <h2>Rules of the game:</h2>
-                <p>Find the healthiest food!</p>
-                <p>Collect healthy calories until time runs out!</p>
-                <p>You've got 10 minutes to start, but the faster you go (!!!) the less time your opponents have!</p>
-                <p>Whomever can collect the healthiest 2500 calories in the least amount of time WINS!!!</p>
-                <p>But don't go over 2500 calories, <span class="minutemonster">otherwise the Minute Monster gets you!!!</span></p>
-            </div>
-        </article>
-        <article>
-            <div id="clock">
-                <h2>Clock</h2>
-            </div>
-        </article>
-    </section>
     <section id="display">
             {{#each this}}
+            {{#if description}}
         <article>
             <div>
                 <h2>{{brandOwner}}</h2>
                 <h3>{{description}}</h3>
                 <p>UPC: {{gtinUpc}}</p>
                 <ul>
-                    {{#each foodNutrients}}<li>{{this.name}}: {{this.amount}} in {{this.unitName}}</li>{{/each}}
+                    {{#each foodNutrients}}<li><strong>{{this.name}}</strong>: {{this.amount}} in {{this.unitName}}</li>{{/each}}
                 </ul>
-                <button class="select {{fdcId}}">Select Me!</button>
+                <button 
+                    class="select"
+                    data-fdcId="{{fdcId}}"
+                    data-name="{{this.description}}"
+                    {{#each foodNutrients}}
+                    data-nutrient-{{@index}}='{"name":"{{this.name}}", "amount":{{this.amount}}, "unit":"{{this.unitName}}" }'
+                    {{/each}}
+                    >Select Me!</button>
             </div>
         </article>
+            {{/if}}
             {{/each}}
     </section>
     <script src="./assets/js/game.js" ></script>
