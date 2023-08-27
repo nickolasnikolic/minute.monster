@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>minute.monster registration</title>
+</head>
+<body>
+    <section>
+        <article>
+            <h1>minute.monster HIGH SCORES</h1>
+            <p>Check only for fun!</p>
+        </article>
+        <article>
+
+            <table>
+                <thead>
+                    <td>calories</td>
+                    <td>carbs</td>
+                    <td>calcium</td>
+                    <td>protein</td>
+                    <td>fiber</td>
+                    <td>vitamins</td>
+                    <td>sodium</td>
+                    <td>cholesterol</td>
+                    <td>fats</td>
+                </thead>
+                {{#each score}}
+                <tr>
+                    <td>{{calories}}</td>
+                    <td>{{carbs}}</td>
+                    <td>{{calcium}}</td>
+                    <td>{{protein}}</td>
+                    <td>{{fiber}}</td>
+                    <td>{{vitamins}}</td>
+                    <td>{{sodium}}</td>
+                    <td>{{cholesterol}}</td>
+                    <td>{{fats}}</td>
+                </tr>
+                {{/each}}
+            </table>
+
+        </article>
+    </section>
+    <script src="./assets/js/highscore.js" ></script>
+</body>
+</html>
