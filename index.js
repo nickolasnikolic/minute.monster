@@ -19,8 +19,8 @@ app.get('/highscore', (req, res) => {
 })
 
 //check high scores
-app.post('/highscore', (req, res) => {
-    
+app.post('/highscorenotify', (req, res) => {
+    var sql = 'select * from highscores order by score desc;' //todo compare on scoring or submittal
     db.run(sql, (results) => {
         console.log(results)
         res.render('highscorenotify', results)   
@@ -29,7 +29,7 @@ app.post('/highscore', (req, res) => {
 
 //record high score
 app.post('/highscore', (req, res) => {
-    
+    var sql = 'insert into highscores values ();' //todo insert a high score
     // db.run(sql, (results) => {
     //     console.log(results)
     //     res.render('highscore', results)   
@@ -41,9 +41,9 @@ app.post('/highscore', (req, res) => {
 app.get('/game', async (req, res) => {
     var viewData = {};
     
-    var randomPage = Math.round((3 + (Math.random() * 1000)))
+    viewData.randomPage = Math.round((3 + (Math.random() * 1000)))
     
-    viewData.target = `https://api.nal.usda.gov/fdc/v1/foods/list?dataType=Branded&pageSize=20&pageNumber=${randomPage}&api_key=yC2ygW8UjAfcr27AeQiadCKV09hKfo5PvLOcyVog`
+    viewData.target = `https://api.nal.usda.gov/fdc/v1/foods/list?dataType=Branded&pageSize=20&pageNumber=${viewData.randomPage}&api_key=yC2ygW8UjAfcr27AeQiadCKV09hKfo5PvLOcyVog`
     
     await fetch(viewData.target)
     .then((response) => { 
