@@ -1,4 +1,5 @@
 body{
+
     background-color: orangered;
     font-family: 'caviardreams';
     list-style-image: url('../images/noun-happy-1418658.svg');
@@ -7,6 +8,9 @@ h1,h2,h3,h4,h5,h6{
     font-family: 'chunkfive';
     transform: rotate(5deg);
     transition: all 4s;
+}
+h1{
+    font-size: 5em;
 }
 article:nth-child(3n) h2{
     color: orange;
@@ -32,7 +36,10 @@ p{
     font-family: 'chunkfive';
     font-size: 20px;
 }
-
+ul{
+    position: relative;
+    left: -3em;
+}
 div{
     z-index: 1;
 }
@@ -43,7 +50,7 @@ div:hover{
 }
 
 header{
-    font-size: 2em;
+    font-size: 1.2em;
     position: inherit;
     color: #fee3bb;
     width: 100%;
@@ -59,11 +66,12 @@ header h1{
     z-index: 10000;
 }
 section{
-    background-image: url('../images/grass.jpg');
+    background-image: linear-gradient(to bottom, #c00, #00c);
+    width: 27em;
     transform: rotate(-0.5deg);
     display:flex;
     flex-wrap: wrap;
-    gap: 5em;
+    gap: 1em;
     padding: 3em;
     height: fit-content;
     margin: 199px 23px;

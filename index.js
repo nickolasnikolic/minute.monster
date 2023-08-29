@@ -9,17 +9,26 @@ app.set('view engine', 'hbs')
 app.use('/assets', express.static(__dirname + '/assets'))
 
 //view high scores
-app.get('/high-score', (req, res) => {
+app.get('/highscore', (req, res) => {
     var sql = 'select * from highscores order by score desc;'
 
     db.run(sql, (results) => {
         console.log(results)
-        res.render('highscore', results)   
+        res.render('highscores', results)   
     })
-    res.render('highscore')
 })
+
+//check high scores
+app.post('/highscore', (req, res) => {
+    
+    db.run(sql, (results) => {
+        console.log(results)
+        res.render('highscorenotify', results)   
+    })
+})
+
 //record high score
-app.post('/high-score', (req, res) => {
+app.post('/highscore', (req, res) => {
     
     // db.run(sql, (results) => {
     //     console.log(results)
@@ -32,7 +41,7 @@ app.post('/high-score', (req, res) => {
 app.get('/game', async (req, res) => {
     var viewData = {};
     
-    var randomPage = Math.round((3 + (Math.random() * 100)))
+    var randomPage = Math.round((3 + (Math.random() * 1000)))
     
     viewData.target = `https://api.nal.usda.gov/fdc/v1/foods/list?dataType=Branded&pageSize=20&pageNumber=${randomPage}&api_key=yC2ygW8UjAfcr27AeQiadCKV09hKfo5PvLOcyVog`
     
