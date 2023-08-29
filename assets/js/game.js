@@ -62,9 +62,12 @@ window.onload = () => {
                         }else{
                             minuteMonsterEndGame()
                         }
+                    //if the data is just the USDA serial number
+                    //ignore it
                     }else if(/\d{6,10}/.test(attribute.value)){
                         console.log('rejecting, final:', index, attribute.name);
                     }else{
+                        //otherwise, tally the nutrition
                         var nutrient = JSON.parse(attribute.value)
                         console.log('logging:', index, nutrient);
                         if(nutrient.unit == "mg"){
