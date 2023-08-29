@@ -17,6 +17,7 @@
         <article>
 
             <h1>You have the highest score in the {{category}} category!</h1>
+            {{#with category}}
             {{#if vitamins}}
                 <p>With {{calories}} of 2500 calories ({{caloriesToSpare}} calories to spare)), you achieved the most vitamins by mass of {{vitamins}} grams!!!</p>
             {{/if}}
@@ -41,6 +42,7 @@
             {{#if fats}}
                 <p>With {{calories}} of 2500 calories ({{caloriesToSpare}} calories to spare)), you achieved the least sodium by fats of {{fats}} grams!!!</p>
             {{/if}}
+            {{/with}}
             
         </article>
     </section>
