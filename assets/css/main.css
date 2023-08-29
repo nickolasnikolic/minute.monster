@@ -98,7 +98,7 @@ article div:hover{
 #rules > article:nth-child(1) > div{
     transition: none;
     transform: rotate(-12deg);
-    box-shadow: 20px 20px yellow;
+    box-shadow: 20px 20px yellowgreen;
 }
 #rules > article:nth-child(2) > div{
     position:absolute;
@@ -140,4 +140,18 @@ button:hover{
 
 .minutemonster{
     color: #365608;
+    animation: bigtosmall 250ms ease-in-out;
 }
+
+@keyframes bigtosmall {
+    from {
+      /* pushes the sun down past the viewport */
+      transform: scale(5);
+      color: red;
+    }
+    to {
+      /* returns the sun to its default position */
+      transform: scale(1);
+      color:#022929;
+    }
+  }

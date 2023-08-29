@@ -54,8 +54,9 @@ window.onload = () => {
                             //add the food 
                             tally.calories += calorie.amount
                             document.querySelector('#calories strong').innerText = tally.calories
+                            minuteMonsterPop(document.querySelector('#calories'))
                         }else{
-                            minuteMonster()
+                            minuteMonsterEndGame()
                         }
                     }else if(/\d{6,10}/.test(attribute.value)){
                         console.log('rejecting, final:', index, attribute.name);
@@ -69,36 +70,43 @@ window.onload = () => {
                             case 'Protein':
                                 tally.protein += Math.ceil(nutrient.amount)
                                 document.querySelector('#protein strong').innerText = tally.protein
+                                minuteMonsterPop(document.querySelector('#protein'))
                                 break;
                             case 'Calcium':
                                 tally.calcium += Math.ceil(nutrient.amount)
                                 document.querySelector('#calcium strong').innerText = tally.calcium
+                                minuteMonsterPop(document.querySelector('#calcium'))
                                 break;
                             case 'Total lipid (fat)':
                                 tally.fats += Math.ceil(nutrient.amount)
                                 document.querySelector('#fats strong').innerText = tally.fats
+                                minuteMonsterPop(document.querySelector('#fats'))
                                 break;
                             case 'Carbohydrate, by difference':
                             case 'Sugars, total including NLEA':
                                 tally.carbs += Math.ceil(nutrient.amount)
                                 document.querySelector('#carbs strong').innerText = tally.carbs
+                                minuteMonsterPop(document.querySelector('#carbs'))
                                 break;
                             case 'Fiber, total dietary':
                                 tally.fiber += Math.ceil(nutrient.amount)
                                 document.querySelector('#fiber strong').innerText = tally.fiber
+                                minuteMonsterPop(document.querySelector('#fiber'))
                                 break;
                             case 'Cholesterol':
                                 tally.protein += Math.ceil(nutrient.amount)
                                 document.querySelector('#cholesterol strong').innerText = tally.protein
+                                minuteMonsterPop(document.querySelector('#cholesterol'))
                                 break;
                             case 'Sodium, Na':
-                                
                                 tally.sodium += Math.ceil(nutrient.amount)
                                 document.querySelector('#sodium strong').innerText = tally.sodium
+                                minuteMonsterPop(document.querySelector('#sodium'))
                                 break;
                             default:
                                 tally.vitamins += Math.ceil(nutrient.amount)
                                 document.querySelector('#vitamins strong').innerText = tally.vitamins
+                                minuteMonsterPop(document.querySelector('#vitamins'))
                                 break;
                         }
                     }
@@ -106,7 +114,13 @@ window.onload = () => {
             })
         })
     })
-    function minuteMonster(){
+    function minuteMonsterPop(element) {
+        element.classList.push('minutemonster');
+        setTimeout(() => {
+            element.classList.pop('minutemonster')
+        }, 1000);        
+    }
+    function minuteMonsterEndGame(){
         alert("You're not a winner!, but try, try, again!")
     }
 }
