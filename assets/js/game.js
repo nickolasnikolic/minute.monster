@@ -4,14 +4,17 @@ window.onload = () => {
     timerElement.appendChild(element)
     //throtttle clock
     var timeAlloted=Date.now() + (1000 * 60 * 3)
-    var countDown = 360
+    var countDown = 360 //6min
     function updateClock(){
         if(Date.now() < timeAlloted){ 
-            if (Date.now() % 100000 == 0) {
-                element.innerText = countDown--
-            }else{
-                minuteMonster()
-            }
+            if (Date.now() % 1000 == 0) {
+                //game end by time
+                if(countDown > 0)
+                   element.innerText = countDown--
+                }else{
+                    minuteMonsterEndGame()
+                }
+
         }
         requestAnimationFrame(updateClock)
     }
@@ -50,6 +53,7 @@ window.onload = () => {
                         //found it!
                         var calorie = JSON.parse(attribute.value)
                         //make sure that it's under maxCalories
+                        //game end by rules
                         if(calorie.amount < maxCalories && tally.calories < maxCalories && calorie.name == 'Energy'){
                             //add the food 
                             tally.calories += calorie.amount
