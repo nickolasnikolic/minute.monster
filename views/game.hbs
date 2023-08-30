@@ -47,7 +47,7 @@
                     data-fdcId="{{fdcId}}"
                     data-name="{{this.description}}"
                     {{#each foodNutrients}}
-                    data-nutrient-{{@index}}='{"name":"{{this.name}}", "amount":{{this.amount}}, "unit":"{{this.unitName}}" }'
+                    data-nutrient-{{@index}}='{"name":"{{{this.name}}}", "amount":{{{this.amount}}}, "unit":"{{{this.unitName}}}" }'
                     {{/each}}
                     >Select Me!</button>
             </div>

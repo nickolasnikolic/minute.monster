@@ -67,7 +67,7 @@ header h1{
 }
 section{
     background-image: linear-gradient(to bottom, #c00, #00c);
-    width: 27em;
+    min-width: 27em;
     transform: rotate(-0.5deg);
     display:flex;
     flex-wrap: wrap;
@@ -135,7 +135,6 @@ button:hover{
 
 #display{
     background-image:url('../images/carpet.jpg');
-    background-attachment: fixed;
 }
 
 .minutemonster{

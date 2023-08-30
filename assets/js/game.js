@@ -3,18 +3,18 @@ window.onload = () => {
     var element = document.createElement('p')
     timerElement.appendChild(element)
     //throtttle clock
-    var timeAlloted=Date.now() + (1000 * 60 * 3)
+    var timeAlloted=new Date(Date.now() + (1000 * 60 * 3))
     var countDown = 360 //6min
     function updateClock(){
         if(Date.now() < timeAlloted){ 
             if (Date.now() % 1000 == 0) {
+                console.log(Date.now(), timeAlloted);
                 //game end by time
                 if(countDown > 0)
                    element.innerText = countDown--
                 }else{
                     minuteMonsterEndGame()
                 }
-
         }
         requestAnimationFrame(updateClock)
     }
@@ -58,7 +58,7 @@ window.onload = () => {
                             //add the food 
                             tally.calories += calorie.amount
                             document.querySelector('#calories strong').innerText = tally.calories
-                            minuteMonsterPop(document.querySelector('#calories'))
+                            minuteMonsterPop(document.querySelector('#calories strong'))
                         }else{
                             minuteMonsterEndGame()
                         }
@@ -68,7 +68,7 @@ window.onload = () => {
                         console.log('rejecting, final:', index, attribute.name);
                     }else{
                         //otherwise, tally the nutrition
-                        var nutrient = JSON.parse(attribute.value)
+                        var nutrient = JSON.parse(String(attribute.value))
                         console.log('logging:', index, nutrient);
                         if(nutrient.unit == "mg"){
                             nutrient.amount = nutrient.amount/1000
@@ -77,38 +77,39 @@ window.onload = () => {
                             case 'Protein':
                                 tally.protein += Math.ceil(nutrient.amount)
                                 document.querySelector('#protein strong').innerText = tally.protein
-                                minuteMonsterPop(document.querySelector('#protein'))
+                                minuteMonsterPop(document.querySelector('#protein strong'))
                                 break;
                             case 'Calcium':
                                 tally.calcium += Math.ceil(nutrient.amount)
                                 document.querySelector('#calcium strong').innerText = tally.calcium
-                                minuteMonsterPop(document.querySelector('#calcium'))
+                                minuteMonsterPop(document.querySelector('#calcium strong'))
                                 break;
                             case 'Total lipid (fat)':
                                 tally.fats += Math.ceil(nutrient.amount)
                                 document.querySelector('#fats strong').innerText = tally.fats
-                                minuteMonsterPop(document.querySelector('#fats'))
+                                minuteMonsterPop(document.querySelector('#fats strong'))
                                 break;
                             case 'Carbohydrate, by difference':
                             case 'Sugars, total including NLEA':
+                            case 'Sugars, added':
                                 tally.carbs += Math.ceil(nutrient.amount)
                                 document.querySelector('#carbs strong').innerText = tally.carbs
-                                minuteMonsterPop(document.querySelector('#carbs'))
+                                minuteMonsterPop(document.querySelector('#carbs strong'))
                                 break;
                             case 'Fiber, total dietary':
                                 tally.fiber += Math.ceil(nutrient.amount)
                                 document.querySelector('#fiber strong').innerText = tally.fiber
-                                minuteMonsterPop(document.querySelector('#fiber'))
+                                minuteMonsterPop(document.querySelector('#fiber strong'))
                                 break;
                             case 'Cholesterol':
                                 tally.protein += Math.ceil(nutrient.amount)
                                 document.querySelector('#cholesterol strong').innerText = tally.protein
-                                minuteMonsterPop(document.querySelector('#cholesterol'))
+                                minuteMonsterPop(document.querySelector('#cholesterol strong'))
                                 break;
                             case 'Sodium, Na':
                                 tally.sodium += Math.ceil(nutrient.amount)
                                 document.querySelector('#sodium strong').innerText = tally.sodium
-                                minuteMonsterPop(document.querySelector('#sodium'))
+                                minuteMonsterPop(document.querySelector('#sodium strong'))
                                 break;
                             default:
                                 tally.vitamins += Math.ceil(nutrient.amount)
@@ -122,12 +123,13 @@ window.onload = () => {
         })
     })
     function minuteMonsterPop(element) {
-        element.classList.push('minutemonster');
+        element.classList.toggle('minutemonster')
         setTimeout(() => {
-            element.classList.pop('minutemonster')
-        }, 1000);        
+            element.classList.toggle('minutemonster')
+        }, 500);        
     }
     function minuteMonsterEndGame(){
-        alert("You're not a winner!, but try, try, again!")
+        //alert("You're not a winner!, but try, try, again!")
+        console.log('game over')
     }
 }
