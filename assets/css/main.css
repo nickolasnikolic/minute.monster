@@ -32,6 +32,24 @@ div:hover h3,div:hover h4, div:hover h5, div:hover h6{
     transform:rotateX(720deg);
 }
 
+#playbutton{
+    display: block;
+    text-align: center;
+    color: white;
+    background-color: purple;
+    text-decoration: none;
+    padding: 1em;
+    border: white 5px solid;
+    border-radius: 7px;
+    width: 35em;
+    transition: all 300ms;
+}
+#playbutton:hover{
+    border: purple 5px solid;
+    background-color: #639e11;
+    color: black;
+}
+
 p{
     font-family: 'chunkfive';
     font-size: 20px;
@@ -51,11 +69,16 @@ div:hover{
 
 header{
     font-size: 1.2em;
-    position: inherit;
+    position: fixed;
+    top: 3em;
+    right: 3em;
     color: #fee3bb;
-    width: 100%;
+    width: 35em;
+    z-index: 10000;
 }
-
+header .excite{
+    animation: cleartosolid 30ms 300ms 20 forwards;
+}
 header h1{
     font-size: 3em;
     text-shadow: #056767 3px 30px 20px;
@@ -63,10 +86,9 @@ header h1{
     position: absolute;
     top: 0px;
     left: 1em;
-    z-index: 10000;
 }
 section{
-    background-image: linear-gradient(to bottom, #c00, #00c);
+    background-color: orchid;
     min-width: 27em;
     transform: rotate(-0.5deg);
     display:flex;
@@ -77,12 +99,12 @@ section{
     margin: 199px 23px;
     border: 10px solid black;
     border-radius: 20px;
+    z-index: 1;
 }
 article div{
     color: darkblue;
     transform: rotate(10deg);
     background-color: aliceblue;
-    list-style-type:square;
     flex: 1 2 30em;
     min-width: 25em;
     padding: 2em;
@@ -142,6 +164,10 @@ button:hover{
     animation: bigtosmall 250ms ease-in-out;
 }
 
+.excite{
+    animation: cleartosolid 30ms 20 forwards;
+}
+
 @keyframes bigtosmall {
     from {
       /* pushes the sun down past the viewport */
@@ -152,5 +178,17 @@ button:hover{
       /* returns the sun to its default position */
       transform: scale(1);
       color:#022929;
+    }
+  }
+
+
+@keyframes cleartosolid {
+    from {
+      /* pushes the sun down past the viewport */
+      background-color: #00ffff;
+    }
+    to {
+      /* returns the sun to its default position */
+      background-color: #ffffff;
     }
   }

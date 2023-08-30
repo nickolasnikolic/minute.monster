@@ -41,7 +41,7 @@ app.post('/highscore', (req, res) => {
 app.get('/game', async (req, res) => {
     var viewData = {};
     
-    viewData.randomPage = Math.round((3 + (Math.random() * 1000)))
+    viewData.randomPage = Math.round((1 + (Math.random() * 10000)))
     
     viewData.target = `https://api.nal.usda.gov/fdc/v1/foods/list?dataType=Branded&pageSize=20&pageNumber=${viewData.randomPage}&api_key=yC2ygW8UjAfcr27AeQiadCKV09hKfo5PvLOcyVog`
     

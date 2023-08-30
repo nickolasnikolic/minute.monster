@@ -39,6 +39,7 @@ window.onload = () => {
     //on click of a buttton in the set
     buttons.forEach((el) => {
         el.addEventListener('click', (e) => {
+            excite(e.target.parentNode)
             //mark a turn taken
             tally.turn++
             //get at calorie attribute
@@ -70,7 +71,7 @@ window.onload = () => {
                         //otherwise, tally the nutrition
                         var nutrient = JSON.parse(String(attribute.value))
                         console.log('logging:', index, nutrient);
-                        if(nutrient.unit == "mg"){
+                        if(nutrient.unit == "MG"){
                             nutrient.amount = nutrient.amount/1000
                         }
                         switch (nutrient.name) {
@@ -79,7 +80,7 @@ window.onload = () => {
                                 document.querySelector('#protein strong').innerText = tally.protein
                                 minuteMonsterPop(document.querySelector('#protein strong'))
                                 break;
-                            case 'Calcium':
+                            case 'Calcium, Ca':
                                 tally.calcium += Math.ceil(nutrient.amount)
                                 document.querySelector('#calcium strong').innerText = tally.calcium
                                 minuteMonsterPop(document.querySelector('#calcium strong'))
@@ -122,6 +123,12 @@ window.onload = () => {
             })
         })
     })
+    function excite(element) {
+        element.classList.toggle('excite')
+        setTimeout(() => {
+            element.classList.toggle('excite')
+        }, 500);        
+    }
     function minuteMonsterPop(element) {
         element.classList.toggle('minutemonster')
         setTimeout(() => {
