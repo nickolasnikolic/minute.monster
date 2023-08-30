@@ -76,44 +76,44 @@ window.onload = () => {
                         }
                         switch (nutrient.name) {
                             case 'Protein':
-                                tally.protein += Math.ceil(nutrient.amount)
+                                tally.protein += nutrient.amount
                                 document.querySelector('#protein strong').innerText = tally.protein
                                 minuteMonsterPop(document.querySelector('#protein strong'))
                                 break;
                             case 'Calcium, Ca':
-                                tally.calcium += Math.ceil(nutrient.amount)
+                                tally.calcium += nutrient.amount
                                 document.querySelector('#calcium strong').innerText = tally.calcium
                                 minuteMonsterPop(document.querySelector('#calcium strong'))
                                 break;
                             case 'Total lipid (fat)':
-                                tally.fats += Math.ceil(nutrient.amount)
+                                tally.fats += nutrient.amount
                                 document.querySelector('#fats strong').innerText = tally.fats
                                 minuteMonsterPop(document.querySelector('#fats strong'))
                                 break;
                             case 'Carbohydrate, by difference':
                             case 'Sugars, total including NLEA':
                             case 'Sugars, added':
-                                tally.carbs += Math.ceil(nutrient.amount)
+                                tally.carbs += nutrient.amount
                                 document.querySelector('#carbs strong').innerText = tally.carbs
                                 minuteMonsterPop(document.querySelector('#carbs strong'))
                                 break;
                             case 'Fiber, total dietary':
-                                tally.fiber += Math.ceil(nutrient.amount)
+                                tally.fiber += nutrient.amount
                                 document.querySelector('#fiber strong').innerText = tally.fiber
                                 minuteMonsterPop(document.querySelector('#fiber strong'))
                                 break;
                             case 'Cholesterol':
-                                tally.protein += Math.ceil(nutrient.amount)
-                                document.querySelector('#cholesterol strong').innerText = tally.protein
+                                tally.cholesterol += nutrient.amount
+                                document.querySelector('#cholesterol strong').innerText = tally.cholesterol
                                 minuteMonsterPop(document.querySelector('#cholesterol strong'))
                                 break;
                             case 'Sodium, Na':
-                                tally.sodium += Math.ceil(nutrient.amount)
+                                tally.sodium += nutrient.amount
                                 document.querySelector('#sodium strong').innerText = tally.sodium
                                 minuteMonsterPop(document.querySelector('#sodium strong'))
                                 break;
                             default:
-                                tally.vitamins += Math.ceil(nutrient.amount)
+                                tally.vitamins += nutrient.amount
                                 document.querySelector('#vitamins strong').innerText = tally.vitamins
                                 minuteMonsterPop(document.querySelector('#vitamins'))
                                 break;
@@ -123,6 +123,15 @@ window.onload = () => {
             })
         })
     })
+
+    var eatButton = document.querySelector('#food button')
+    eatButton.addEventListener('click', e => {
+        var url = `/game?calories=${tally.calories}&protein=${tally.protein}&calcium=${tally.calcium}&fats=${tally.fats}&carbs=${tally.carbs}&fiber=${tally.fiber}&cholesterol=${tally.cholesterol}&sodium=${tally.sodium}&vitamins=${tally.vitamins}`
+        fetch(url);
+        }
+    )
+    
+
     function excite(element) {
         element.classList.toggle('excite')
         setTimeout(() => {
