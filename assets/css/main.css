@@ -1,5 +1,4 @@
 body{
-
     background-color: orangered;
     font-family: 'caviardreams';
     list-style-image: url('../images/noun-happy-1418658.svg');
@@ -38,11 +37,6 @@ article:nth-child(3n) h2{
 article:nth-child(2n) h2{
     color: #009dff;
 }
-div h2{
-   font-size: 42px; 
-   color: darkorchid;
-   transform: scaleZ(3);
-}
 div:hover h2{
     color:#022929;
 }
@@ -52,6 +46,22 @@ div:hover h3,div:hover h4, div:hover h5, div:hover h6{
     background-color: #365608;
 }
 
+
+#display{
+    display: grid;
+    
+    grid-column: 1;
+    grid-auto-rows: 200px;
+    grid-auto-flow: row dense;
+
+    align-items: center;
+    justify-self: start;
+    justify-content: space-around;
+}
+article{
+    justify-content: center;
+    align-items: center;
+}
 #playbutton{
     display: block;
     text-align: center;
@@ -78,13 +88,11 @@ ul{
     position: relative;
     left: -3em;
 }
+li{
+    list-style-image: url('../images/noun-happy-1418658.svg');
+}
 div{
     z-index: 1;
-}
-div:hover{
-    z-index: 100;
-    transform: rotate(-5deg) scale(1.6);
-    box-shadow: black 12px 12px;
 }
 
 header{
@@ -95,7 +103,7 @@ header{
     display:block;
     height:250px;
 }
-header .excite{
+.excite{
     animation: cleartosolid 30ms 300ms 20 forwards;
 }
 header h1{
@@ -106,36 +114,36 @@ header h1{
     top: 0px;
     left: 1em;
 }
-header section{
-    background-color: orchid;
-    min-width: 27em;
-    transform: rotate(-25deg);
-    display:flex;
-    flex-wrap: wrap;
-    gap: 1em;
-    padding: 3em;
-    height: fit-content;
-    margin: 199px 23px;
-    border: 10px solid black;
-    border-radius: 20px;
-    z-index: 1;
-}
-
-article div{
+.swivel{
     color: darkblue;
     transform: rotate(10deg);
     background-color: aliceblue;
-    flex: 1 2 30em;
+    display: grid;
+    gap: 3em;
     min-width: 25em;
+    max-width: 30em;
     padding: 2em;
     transition: all 2s;
     border:3px solid #022929;
-
+    z-index: 100000;
 }
 
-article div:hover{
-    z-index: 100;
-    transform: rotate(-12deg);
+.swivel:hover{
+    transform: rotate(-5deg) scale(1.1);
+    box-shadow: black 12px 12px;
+}
+
+
+button{
+    font-family: 'caviardream';
+    width:100%;
+    height: 36px;
+    background-color: #365608;
+    color: white;
+    margin: 1em;
+}
+button:hover{
+    background-color: #639e11;
 }
 
 #rules > article:nth-child(1) > div{
@@ -168,21 +176,12 @@ article div:hover ul{
 
 #food{
     position: fixed;
+    transform: none;;
+    padding: 2em;
+    background-color: white;
     bottom: 0px;
     text-align: left;
 
-}
-
-button{
-    font-family: 'caviardream';
-    width:100%;
-    height: 36px;
-    background-color: #365608;
-    color: white;
-    margin: 1em;
-}
-button:hover{
-    background-color: #639e11;
 }
 
 #display > article:nth-last-child(1){ display: none; }

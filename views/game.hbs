@@ -16,7 +16,7 @@
             {{#each this}}
             {{#if description}}
         <article>
-            <div>
+            <div class="swivel">
                 <h2>{{brandOwner}}{{#unless brandOwner}}Generic{{/unless}}</h2>
                 <h3>{{description}}</h3>
                 <!--<p>UPC: {{gtinUpc}}</p>-->
@@ -38,11 +38,9 @@
     </section>
     <footer>
         <section>
-            <section>
-                <article id="clock">
-                    <h2>Clock</h2>
-                </article>
-            </section>
+            <div id="clock">
+                <h2>Clock</h2>
+            </div>
             <article id="food">
                     <h2>Minute.Monster Shopping List:</h2>
                     <ul>
@@ -55,7 +53,7 @@
                         <li id="sodium">Total Sodium (less of): <strong>{{tally.sodium}}</strong> grams</li>
                         <li id="cholesterol">Total Cholesterol (least of): <strong>{{tally.cholesterol}}</strong> grams</li>
                         <li id="fats">Total Fats (least of): <strong>{{tally.fats}}</strong> grams</li>
-                        <button>get more foods</button>
+                        <button id="getMore">get more foods</button>
                         <button id="rate">rate my game</button>
                     </ul>
             </article>
