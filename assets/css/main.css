@@ -6,11 +6,18 @@ body{
 }
 h1,h2,h3,h4,h5,h6{
     font-family: 'chunkfive';
-    transform: rotate(5deg);
     transition: all 4s;
 }
 h1{
     font-size: 5em;
+    transform: rotate(5deg);
+}
+#glossary h3{
+    color: #009dff;
+}
+*::marker{
+    font-size: 35px;
+    transform: translateY(100px);
 }
 article:nth-child(3n) h2{
     color: orange;
@@ -29,7 +36,6 @@ div:hover h2{
 div:hover h3,div:hover h4, div:hover h5, div:hover h6{
     transform: rotate(-5deg) scale(1.3) translateX(-10px);
     color: yellowgreen;
-    transform:rotateX(720deg);
 }
 
 #playbutton{
@@ -133,6 +139,11 @@ article div:hover{
     transition: none;
 }
 
+#calories strong{
+    font-size: larger;
+    color: red;
+}
+
 article div ul{
     transition: all 10s;
 }
@@ -140,12 +151,15 @@ article div:hover ul{
     transform: translateX(20px);
 }
 
+
+
 button{
     font-family: 'caviardream';
     width:100%;
     height: 36px;
     background-color: #365608;
     color: white;
+    margin: 1em;
 }
 button:hover{
     background-color: #639e11;

@@ -43,9 +43,9 @@ app.get('/game', async (req, res) => {
     if (req.query) {
         viewData.tally = req.query
     }
-    viewData.randomPage = Math.round((1 + (Math.random() * 10000)))
+    viewData.randomPage = Math.round((1 + (Math.random() * 300)))
     
-    viewData.target = `https://api.nal.usda.gov/fdc/v1/foods/list?dataType=Branded&pageSize=20&pageNumber=${viewData.randomPage}&api_key=yC2ygW8UjAfcr27AeQiadCKV09hKfo5PvLOcyVog`
+    viewData.target = `https://api.nal.usda.gov/fdc/v1/foods/list?dataType=Branded&pageSize=40&pageNumber=${viewData.randomPage}&api_key=yC2ygW8UjAfcr27AeQiadCKV09hKfo5PvLOcyVog`
     
     await fetch(viewData.target)
     .then((response) => { 
@@ -58,10 +58,22 @@ app.get('/game', async (req, res) => {
         //if not found to be a document
         if (data.status == 404) {
             viewData.abstract = "Please retry the game, there was an error"
-        }else{
-            viewData = data
+        }else if(data.status == 500){
+             //refreshing so that another random page may work
+             var url = `/game`
+             //be sure to acknowledge query for past turns
+             if(viewData.tally){
+                url += `?`
+                for(var [key, value] of Object.entries(viewData.tally)){
+                    url += `&${key}=${value}`
+                }
+             }
+            res.redirect(url)
+        }
+        else{
+                viewData = {...viewData, ...data}
                 res.render('game', viewData)
-            }
+        }
             
         })
         .catch((error) => {

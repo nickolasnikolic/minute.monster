@@ -18,16 +18,17 @@
             <article id="food">
                     <h2>Minute.Monster Shopping List:</h2>
                     <ul>
-                        <li id="calories">Total Calorie Count (enough of, but not too much!!! (2500 calories)): <strong>0</strong> calories</li>
-                        <li id="carbs">Total Carbohydrates (enough of): <strong>0</strong> grams</li>
-                        <li id="calcium">Total Calcium (enough of): <strong>0</strong> grams</li>
-                        <li id="protein">Total Protein (enough of): <strong>0</strong> grams</li>
-                        <li id="fiber">Total Fiber (enough of): <strong>0</strong> grams</li>
-                        <li id="vitamins">Total Vitamins By Mass (most of): <strong>0</strong> grams</li>
-                        <li id="sodium">Total Sodium (less of): <strong>0</strong> grams</li>
-                        <li id="cholesterol">Total Cholesterol (least of): <strong>0</strong> grams</li>
-                        <li id="fats">Total Fats (least of): <strong>0</strong> grams</li>
-                        <button>eat</button>
+                        <li id="calories">Total Calorie Count (enough of, but not too much!!! (2500 calories)): <strong>{{tally.calories}}</strong> calories</li>
+                        <li id="carbs">Total Carbohydrates (enough of): <strong>{{tally.carbs}}</strong> grams</li>
+                        <li id="calcium">Total Calcium (enough of): <strong>{{tally.calcium}}</strong> grams</li>
+                        <li id="protein">Total Protein (enough of): <strong>{{tally.protein}}</strong> grams</li>
+                        <li id="fiber">Total Fiber (enough of): <strong>{{tally.fiber}}</strong> grams</li>
+                        <li id="vitamins">Total Vitamins By Mass (most of): <strong>{{tally.vitamins}}</strong> grams</li>
+                        <li id="sodium">Total Sodium (less of): <strong>{{tally.sodium}}</strong> grams</li>
+                        <li id="cholesterol">Total Cholesterol (least of): <strong>{{tally.cholesterol}}</strong> grams</li>
+                        <li id="fats">Total Fats (least of): <strong>{{tally.fats}}</strong> grams</li>
+                        <button>get more foods</button>
+                        <button id="rate">rate my game</button>
                     </ul>
             </article>
         </section>
@@ -39,7 +40,7 @@
             <div>
                 <h2>{{brandOwner}}</h2>
                 <h3>{{description}}</h3>
-                <p>UPC: {{gtinUpc}}</p>
+                <!--<p>UPC: {{gtinUpc}}</p>-->
                 <ul>
                     {{#each foodNutrients}}<li><strong>{{this.name}}</strong>: {{this.amount}} in {{this.unitName}}</li>{{/each}}
                 </ul>
