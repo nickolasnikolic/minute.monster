@@ -89,12 +89,11 @@ div:hover{
 
 header{
     font-size: 1.2em;
-    position: fixed;
-    bottom: 3em;
-    right: 3em;
     color: #fee3bb;
     width: 100%;
     z-index: 10000;
+    display:block;
+    height:250px;
 }
 header .excite{
     animation: cleartosolid 30ms 300ms 20 forwards;
@@ -167,7 +166,12 @@ article div:hover ul{
     transform: translateX(20px);
 }
 
+#food{
+    position: fixed;
+    bottom: 0px;
+    text-align: left;
 
+}
 
 button{
     font-family: 'caviardream';
