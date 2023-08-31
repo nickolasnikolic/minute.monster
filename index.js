@@ -45,7 +45,7 @@ app.get('/game', async (req, res) => {
     }
     viewData.randomPage = Math.round((1 + (Math.random() * 300)))
     
-    viewData.target = `https://api.nal.usda.gov/fdc/v1/foods/list?dataType=Branded&pageSize=40&pageNumber=${viewData.randomPage}&api_key=yC2ygW8UjAfcr27AeQiadCKV09hKfo5PvLOcyVog`
+    viewData.target = `https://api.nal.usda.gov/fdc/v1/foods/list?dataType=Branded&pageSize=25&pageNumber=${viewData.randomPage}&api_key=yC2ygW8UjAfcr27AeQiadCKV09hKfo5PvLOcyVog`
     
     await fetch(viewData.target)
     .then((response) => { 
