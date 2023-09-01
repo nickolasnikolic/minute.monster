@@ -1,41 +1,36 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const hbs = require('hbs')
 const hsc = require('htmlspecialchars')
 const sqlite = require('sqlite3').verbose()
 const db = new sqlite.Database('game.db')
 const app = express()
 app.set('view engine', 'hbs')
-
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/assets', express.static(__dirname + '/assets'))
 
 //view high scores
-app.get('/highscore', (req, res) => {
-    var sql = 'select * from highscores order by score desc;'
+app.get('/highscores', (req, res) => {
+    // var sql = 'select * from highscores order by score desc;'
 
-    db.run(sql, (results) => {
-        console.log(results)
-        res.render('highscores', results)   
-    })
+    // db.run(sql, (results) => {
+    //     console.log(results)
+    //     res.render('highscores', results)   
+    // })
 })
 
 //check high scores
 app.post('/highscorenotify', (req, res) => {
+    console.log(req.body);
+    /*
     var sql = 'select * from highscores order by score desc;' //todo compare on scoring or submittal
     db.run(sql, (results) => {
         console.log(results)
-        res.render('highscorenotify', results)   
+        res.redirect('highscores')   
     })
+    */
 })
 
-//record high score
-app.post('/highscore', (req, res) => {
-    var sql = 'insert into highscores values ();' //todo insert a high score
-    // db.run(sql, (results) => {
-    //     console.log(results)
-    //     res.render('highscore', results)   
-    // })
-    res.render('highscore')
-})
 
 //run the game
 app.get('/game', async (req, res) => {

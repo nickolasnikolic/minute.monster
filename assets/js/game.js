@@ -3,17 +3,14 @@ window.onload = () => {
     var element = document.createElement('p')
     timerElement.appendChild(element)
     //throtttle clock
-    var timeAlloted=new Date(Date.now() + (1000 * 60 * 3))
-    var countDown = 60 //1min
+    var minutes = 0.5
+    var timeAlloted=new Date(Date.now() + (1000 * 60 * minutes))
     function updateClock(){
         if(Date.now() < timeAlloted){ 
-            if (Date.now() % 1000 == 0) {
-                //game end by time
-                if(countDown > 0)
-                   element.innerText = countDown--
-                }else{
-                    minuteMonsterEndGame()
-                }
+            //game end by time
+            element.innerText = String((timeAlloted - Date.now())/1000 + ' seconds')
+        }else{
+            minuteMonsterEndGame()
         }
         requestAnimationFrame(updateClock)
     }
@@ -72,7 +69,7 @@ window.onload = () => {
                         var calorie = JSON.parse(attribute.value)
                         //make sure that it's under maxCalories
                         //game end by rules
-                        if(calorie.amount < maxCalories && tally.calories < maxCalories && calorie.name == 'Energy'){
+                        if(tally.calories < maxCalories){
                             //add the food 
                             tally.calories += Math.ceil(Number(calorie.amount))
                             document.querySelector('#calories strong').innerText = tally.calories
@@ -172,7 +169,16 @@ window.onload = () => {
         }, 500);        
     }
     function minuteMonsterEndGame(){
-        //alert("You're not a winner!, but try, try, again!")
-        console.log('game over')
+        document.getElementById('gameOver').style.zIndex = 2000000
+        //check to see if a high score
+        fetch('/highscorenotify', {
+            method: 'POST',
+            body: JSON.stringify(tally)
+        })
+        .then( yes => {
+            if(yes){
+                location.assign('/highscores')
+            }
+        })
     }
 }

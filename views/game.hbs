@@ -10,32 +10,40 @@
 </head>
 <body>
     <header>
-        <h1>The <span class="minutemonster"></span>Minute.Monster</span> Game!</h1>
+        <h1 class="title">The <span class="minutemonster"></span>Minute.Monster</span> Game!</h1>
     </header>
-    <section id="display">
-            {{#each this}}
-            {{#if description}}
+    <div class="grid">
+        <section id="display">
+                {{#each this}}
+                {{#if description}}
+            <article>
+                <div class="swivel">
+                    <h2>{{brandOwner}}{{#unless brandOwner}}Generic{{/unless}}</h2>
+                    <h3>{{description}}</h3>
+                    <!--<p>UPC: {{gtinUpc}}</p>-->
+                    <ul>
+                        {{#each foodNutrients}}<li><strong>{{this.name}}</strong>: {{this.amount}} in {{this.unitName}}</li>{{/each}}
+                    </ul>
+                    <button 
+                        class="select"
+                        data-fdcId="{{fdcId}}"
+                        data-name="{{this.description}}"
+                        {{#each foodNutrients}}
+                        data-nutrient-{{@index}}='{"name":"{{{this.name}}}", "amount":{{{this.amount}}}, "unit":"{{{this.unitName}}}" }'
+                        {{/each}}
+                        >Select Me!</button>
+                </div>
+            </article>
+                {{/if}}
+                {{/each}}
+        </section>
+    </div>
+    <div id="gameOver">
+        <h1 class="title">Sorry, Game Over :-(</h1>
         <article>
-            <div class="swivel">
-                <h2>{{brandOwner}}{{#unless brandOwner}}Generic{{/unless}}</h2>
-                <h3>{{description}}</h3>
-                <!--<p>UPC: {{gtinUpc}}</p>-->
-                <ul>
-                    {{#each foodNutrients}}<li><strong>{{this.name}}</strong>: {{this.amount}} in {{this.unitName}}</li>{{/each}}
-                </ul>
-                <button 
-                    class="select"
-                    data-fdcId="{{fdcId}}"
-                    data-name="{{this.description}}"
-                    {{#each foodNutrients}}
-                    data-nutrient-{{@index}}='{"name":"{{{this.name}}}", "amount":{{{this.amount}}}, "unit":"{{{this.unitName}}}" }'
-                    {{/each}}
-                    >Select Me!</button>
-            </div>
+            <a id="playbutton" href="/game">Play Again???</a>
         </article>
-            {{/if}}
-            {{/each}}
-    </section>
+    </div>
     <footer>
         <section>
             <div id="clock">
@@ -53,8 +61,7 @@
                         <li id="sodium">Total Sodium (less of): <strong>{{tally.sodium}}</strong> grams</li>
                         <li id="cholesterol">Total Cholesterol (least of): <strong>{{tally.cholesterol}}</strong> grams</li>
                         <li id="fats">Total Fats (least of): <strong>{{tally.fats}}</strong> grams</li>
-                        <button id="getMore">get more foods</button>
-                        <button id="rate">rate my game</button>
+                        <button id="getMore">get more foods and time</button>
                     </ul>
             </article>
         </section>
