@@ -2,7 +2,6 @@ const express = require('express')
 const hbs = require('hbs')
 const app = express()
 app.set('view engine', 'hbs')
-app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/assets', express.static(__dirname + '/assets'))
 
 //run the game
