@@ -67,12 +67,22 @@ h1,h2,h3,h4,h5,h6{
     width: 35em;
     transition: all 300ms;
 }
-#playButton:hover{
+#playButton:hover, #playButton:hover + h1.title{
     border: purple 5px solid;
+    animation: glimmer 0.2s alternate infinite;
     background-color: #639e11;
     color: black;
-}
 
+}
+@keyframes glimmer {
+  
+    from{
+        filter: brightness(1)
+    }
+    to{
+        filter: brightness(2)
+    }
+}
 p{
     font-size: 20px;
 }
