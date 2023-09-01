@@ -11,7 +11,6 @@ h1,h2,h3,h4,h5,h6{
     font-size: 6em;
     transform: rotate(5deg);
     background: transparent;
-    z-index: 3000000;
 }
 h2{
     font-size: 1.5em;
