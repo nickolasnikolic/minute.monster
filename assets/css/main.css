@@ -197,7 +197,7 @@ article div:hover ul{
 }
 #gameOver{
     position: fixed;
-    top: 0px;
+    top: -10em;
     left: 0px;
     height: 100%;
     width: 100%;

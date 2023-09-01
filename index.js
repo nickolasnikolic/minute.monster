@@ -9,29 +9,6 @@ app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/assets', express.static(__dirname + '/assets'))
 
-//view high scores
-app.get('/highscores', (req, res) => {
-    // var sql = 'select * from highscores order by score desc;'
-
-    // db.run(sql, (results) => {
-    //     console.log(results)
-    //     res.render('highscores', results)   
-    // })
-})
-
-//check high scores
-app.post('/highscorenotify', (req, res) => {
-    console.log(req.body);
-    /*
-    var sql = 'select * from highscores order by score desc;' //todo compare on scoring or submittal
-    db.run(sql, (results) => {
-        console.log(results)
-        res.redirect('highscores')   
-    })
-    */
-})
-
-
 //run the game
 app.get('/game', async (req, res) => {
     var viewData = {};

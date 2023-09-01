@@ -3,6 +3,7 @@ window.onload = () => {
     var element = document.createElement('p')
     timerElement.appendChild(element)
     //throtttle clock
+    var stopFlag = false
     var minutes = 0.5
     var timeAlloted=new Date(Date.now() + (1000 * 60 * minutes))
     function updateClock(){
@@ -10,7 +11,10 @@ window.onload = () => {
             //game end by time
             element.innerText = String((timeAlloted - Date.now())/1000 + ' seconds')
         }else{
-            minuteMonsterEndGame()
+            if (stopFlag == false ){
+                minuteMonsterEndGame()
+                stopFlag = true
+            }
         }
         requestAnimationFrame(updateClock)
     }
@@ -170,15 +174,19 @@ window.onload = () => {
     }
     function minuteMonsterEndGame(){
         document.getElementById('gameOver').style.zIndex = 2000000
-        //check to see if a high score
-        fetch('/highscorenotify', {
-            method: 'POST',
-            body: JSON.stringify(tally)
-        })
-        .then( yes => {
-            if(yes){
-                location.assign('/highscores')
+        var gameOverScreen = document.querySelector('#gameOver article')
+        var ul = document.createElement('ul')
+        delete tally.turn
+        for(var [key, value] of Object.entries(tally)){
+            var li = document.createElement('li')
+            li.innerHTML += `${key} in the amount: ${value} `
+            if(key != 'calories'){
+                li.innerHTML += `(in grams)`
             }
-        })
+                
+            ul.appendChild(li) 
+        }
+        gameOverScreen.appendChild(ul)
+        stopFlag = true
     }
 }
