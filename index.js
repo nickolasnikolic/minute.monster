@@ -53,7 +53,6 @@ app.get('/game', async (req, res) => {
 
 app.get('/confirm', (req, res) => {
     var viewData = {}
-    var
     viewData.wins = req.query.wins
     viewData.tally = req.query
 

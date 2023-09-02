@@ -68,23 +68,10 @@ window.onload = () => {
                 if (attribute.name == 'class' || attribute.name == 'data-name' || attribute.name == 'data-fdcid') {
                     console.log('rejecting, first:', index, attribute.name);
                 } else {
-                    //add the total calorie count to the list
-                    if(attribute.name == 'data-nutrient-3'){
-                        //found it!
-                        var calorie = JSON.parse(attribute.value)
-                        //make sure that it's under maxCalories
-                        //game end by rules
-                        if(tally.calories < tally.maxCalories){
-                            //add the food 
-                            tally.calories += Math.ceil(Number(calorie.amount))
-                            document.querySelector('#calories strong').innerText = tally.calories
-                            minuteMonsterPop(document.querySelector('#calories strong'))
-                        }else{
-                            minuteMonsterEndGame()
-                        }
+                    //add the total nutrient count to the list
                     //if the data is just the USDA serial number
                     //ignore it
-                    }else if(/\d{6,10}/.test(attribute.value)){
+                    if(/\d{6,10}/.test(attribute.value)){
                         console.log('rejecting, final:', index, attribute.name)
                     }else{
                         //otherwise, tally the nutrition
@@ -96,8 +83,15 @@ window.onload = () => {
 
                         if(nutrient.unit == "MG"){
                             nutrient.amount = nutrient.amount/1000
+                        }else if(nutrient.unit == "UI"){
+                            nutrient.amount = nutrient.amount / 660000
                         }
                         switch (nutrient.name) {
+                            case 'Energy':
+                                tally.calories += nutrient.amount
+                                document.querySelector('#calories strong').innerText = tally.protein.toFixed(3)
+                                minuteMonsterPop(document.querySelector('#calories strong'))
+                                break;
                             case 'Protein':
                                 tally.protein += nutrient.amount
                                 document.querySelector('#protein strong').innerText = tally.protein.toFixed(3)

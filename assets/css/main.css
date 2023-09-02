@@ -7,6 +7,11 @@ html,body{
 body, div{
     background-image: linear-gradient(white,rgba(255, 255, 255, 0.829), rgba(204, 204, 204, 0.897)), url(../images/1553285932.svg);
 }
+
+header{
+    background-color: #009dff;
+}
+
 h1,h2,h3,h4,h5,h6{
     font-family: 'chunkfive';
     transition: all 1s;
