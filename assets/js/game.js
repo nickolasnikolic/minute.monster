@@ -89,7 +89,7 @@ window.onload = () => {
                         switch (nutrient.name) {
                             case 'Energy':
                                 tally.calories += nutrient.amount
-                                document.querySelector('#calories strong').innerText = tally.protein.toFixed(3)
+                                document.querySelector('#calories strong').innerText = tally.calories.toFixed(3)
                                 minuteMonsterPop(document.querySelector('#calories strong'))
                                 break;
                             case 'Protein':
@@ -187,7 +187,11 @@ window.onload = () => {
         }
         for(var [key, value] of Object.entries(tally)){
             var li = document.createElement('li')
-            li.innerHTML += `${key} in the amount: ${value} `
+            if (key == "minCalories" ||key == "maxCalories" ||key == "wins" || key == "turn" ) {
+                continue
+            } else {
+                li.innerHTML += `${key} in the amount: ${value.toFixed(3)} `
+            }
                 
             ul.appendChild(li) 
         }
