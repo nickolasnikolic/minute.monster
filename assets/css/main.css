@@ -1,3 +1,5 @@
+@media screen and (min-width: 1001px) {
+    
 html,body{
     background-color: orangered;
     font-family: 'caviardreams';
@@ -92,7 +94,7 @@ ul{
     left: -3em;
 }
 li{
-    list-style-image: url('../images/noun-happy-1418658.svg');
+    list-style-type: square;
 }
 div{
     z-index: 1;
@@ -265,127 +267,126 @@ article div:hover ul{
 .excite{
     animation: cleartosolid 30ms 20 forwards;
 }
+}
+
+  
+@media (max-width: 1000px) {
+    body{
+        font-size: 0.75em;
+        font-family: 'caviardreams';
+        color: black;
+    }
+    #gameOver{
+        height:100%;
+        width: 100%;
+    }
+    .title{
+        font-size: 3em;
+    }
+    #playButton{
+        font-family: 'chunkfive';
+        font-size: 58px !important;
+        width: 8em;
+        height: 2em;
+        margin: 0px !important;
+        animation-name: insteadOfHover;
+        animation-duration: 1s;
+        animation-direction: alternate;
+        animation-iteration-count: infinite;
+    }
+    li{
+        list-style-type: none;
+    }
+    article{
+        width: 100%;;
+    }
+      #intro, #glossary{
+          display:block;
+          width: 100%;
+      }
+      #playButton{
+          font-family: 'chunkfive';
+          font-size: 58px !important;
+          width: 8em;
+          height: 2em;
+          margin: 0px !important;
+          animation-name: insteadOfHover;
+          animation-duration: 1s;
+          animation-direction: alternate;
+          animation-iteration-count: infinite;
+      }
+      #food,#clock{
+        background-color: orange;
+        padding: 1em;
+        position:fixed;
+        left: 0px;
+        width:100%;
+      }
+      #food{
+        bottom: 0px;
+      }
+      #food h2{
+        font-size: 0.8em;
+      }
+      #clock{
+        top: 0px;
+      }
+      #food li{
+        display: none;
+      }
+      #food li:nth-child(1),#food li:nth-child(6),#food li:nth-child(9){
+        display: block;
+        position: relative;
+        left: -3em;
+      }
+
+  }  
+
+@media (max-width: 400px) {
+    #display{
+        background: transparent;
+    }
+    #gameOver ul{
+        display: none;
+    }
+    
+    *,*:hover{
+        transition: none;
+        transform: none;
+        animation: none;
+    }
+    .swivel{
+        transform: none;
+        width:100%;
+        height: auto;
+        transition: none;
+    }
+    
+    #playButton{
+        font-size: 2.2em !important;
+        padding: 10px;
+        height: auto;
+    }
+}
 
 @keyframes bigtosmall {
-    from {
-      /* pushes the sun down past the viewport */
-      transform: scale(5);
-      color: red;
-    }
-    to {
-      /* returns the sun to its default position */
-      transform: scale(1);
-      color:#022929;
-    }
-  }
+from {
+    /* pushes the sun down past the viewport */
+    transform: scale(5);
+    color: red;
+}
+to {
+    /* returns the sun to its default position */
+    transform: scale(1);
+    color:#022929;
+}
+}
 
-
-@keyframes cleartosolid {
-    from {
-      /* pushes the sun down past the viewport */
-      background-color: #00ffff;
-    }
-    to {
-      /* returns the sun to its default position */
-      background-color: #ffffff;
-    }
-  }
-  
-  @media (max-width: 1010px) {
-      .title{
-          color:antiquewhite;
-          font-size: 3em;
-        }
-        #intro, #glossary{
-            display:block;
-            width: 519px;
-        }
-        #playButton{
-            font-family: 'chunkfive';
-            font-size: 58px !important;
-            width: 8em;
-            height: 2em;
-            margin: 0px !important;
-            animation-name: insteadOfHover;
-            animation-duration: 1s;
-            animation-direction: alternate;
-            animation-iteration-count: infinite;
-        }
-        
-        
-        @media (max-width: 800px) {
-            body{
-                width: 100%;
-                height: 100%;
-            }
-        li{
-            position: relative;
-            left: 3em;
-        }
-        #gameOver{
-            height:100%;
-            width: 100%;
-        }
-        .title{
-            color:antiquewhite;
-            font-size: 3em;
-        }
-        #intro, #glossary{
-            display:block;
-            width: 519px;
-        }
-        #playButton{
-            font-family: 'chunkfive';
-            font-size: 58px !important;
-            width: 8em;
-            height: 2em;
-            margin: 0px !important;
-            animation-name: insteadOfHover;
-            animation-duration: 1s;
-            animation-direction: alternate;
-            animation-iteration-count: infinite;
-        }
-    }
-    @keyframes insteadOfHover {
-        from{
-            filter: hue-rotate(30deg);
-        }
-        to{
-            filter: hue-rotate(-60deg);
-        }
-    }
-
-    @media (max-width: 400px) {
-        #display{
-            background: orangered;
-        }
-        #gameOver ul{
-            display: none;
-        }
-
-        #food,#clock{
-            position:inherit;
-        }
-
-        .title{
-            font-size: 2.2em;
-        }
-        *,*:hover{
-            transition: none;
-            transform: none;
-            animation: none;
-        }
-        .swivel{
-            transform: none;
-            width:360px;
-            height: auto;
-            transition: none;
-        }
-
-        #playButton{
-            font-size: 1.2em !important;
-            padding: 10px;
-            height: auto;
-        }
-    }
+@keyframes insteadOfHover {
+from{
+    filter: hue-rotate(30deg);
+}
+to{
+    filter: hue-rotate(-60deg);
+}
 }
