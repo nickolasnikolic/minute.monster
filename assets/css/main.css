@@ -1,9 +1,11 @@
 @media screen and (min-width: 1001px) {
     
 html,body{
-    background-color: orangered;
     font-family: 'caviardreams';
     padding: 0px;
+}
+body, div{
+    background-image: linear-gradient(white,rgba(255, 255, 255, 0.829), rgba(204, 204, 204, 0.897)), url(../images/1553285932.svg);
 }
 h1,h2,h3,h4,h5,h6{
     font-family: 'chunkfive';
@@ -275,10 +277,37 @@ article div:hover ul{
         font-size: 0.75em;
         font-family: 'caviardreams';
         color: black;
+        background-color: orange;
+        background-repeat: repeat;
+    }
+    body, div{
+        background-image: linear-gradient(white,rgba(255, 255, 255, 0.829), rgba(204, 204, 204, 0.897)), url(../images/1553285932.svg);
+    }
+    body > header{
+        display:none;
+    }
+    #display{
+        position: relative;
+        top: 10em;
+    }
+    #display button{
+        width: 200px;
+        background-color: chocolate;
+        color: white;
+        border-radius: 7px;
+    }
+    .grid{
+        background-color: aliceblue;
     }
     #gameOver{
+        padding:1em;
         height:100%;
         width: 100%;
+        position:fixed;
+        top:0px;
+        left: 0px;
+        background-color: chocolate;
+        z-index: -1;
     }
     .title{
         font-size: 3em;
@@ -298,22 +327,12 @@ article div:hover ul{
         list-style-type: none;
     }
     article{
-        width: 100%;;
+        width: 100%;
+        padding: 3px;
     }
       #intro, #glossary{
           display:block;
           width: 100%;
-      }
-      #playButton{
-          font-family: 'chunkfive';
-          font-size: 58px !important;
-          width: 8em;
-          height: 2em;
-          margin: 0px !important;
-          animation-name: insteadOfHover;
-          animation-duration: 1s;
-          animation-direction: alternate;
-          animation-iteration-count: infinite;
       }
       #food,#clock{
         background-color: orange;
@@ -346,10 +365,7 @@ article div:hover ul{
     #display{
         background: transparent;
     }
-    #gameOver ul{
-        display: none;
-    }
-    
+       
     *,*:hover{
         transition: none;
         transform: none;
@@ -361,7 +377,6 @@ article div:hover ul{
         height: auto;
         transition: none;
     }
-    
     #playButton{
         font-size: 2.2em !important;
         padding: 10px;

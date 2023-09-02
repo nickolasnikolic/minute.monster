@@ -51,6 +51,7 @@ window.onload = () => {
         tally.fats = 0
     }
 
+    tally.minCalories = 1750
     tally.maxCalories = 2500
     var buttons = document.querySelectorAll('button.select')
     var buttons = Array.from(buttons)
@@ -176,7 +177,7 @@ window.onload = () => {
         document.getElementById('gameOver').style.zIndex = 2000000
         var gameOverScreen = document.querySelector('#gameOver article')
         var ul = document.createElement('ul')
-        if ((tally.turn > 0) && tally.calories < tally.maxCalories) {
+        if ((tally.turn > 0) && tally.calories < tally.maxCalories && tally.calories > tally.minCalories) {
             tally.wins = true
             if(tally){
                 console.log(tally)
@@ -193,9 +194,6 @@ window.onload = () => {
         for(var [key, value] of Object.entries(tally)){
             var li = document.createElement('li')
             li.innerHTML += `${key} in the amount: ${value} `
-            if(key != 'calories'){
-                li.innerHTML += `(in grams)`
-            }
                 
             ul.appendChild(li) 
         }
