@@ -51,7 +51,7 @@ window.onload = () => {
         tally.fats = 0
     }
 
-    var maxCalories = 2500
+    tally.maxCalories = 2500
     var buttons = document.querySelectorAll('button.select')
     var buttons = Array.from(buttons)
     //on click of a buttton in the set
@@ -73,7 +73,7 @@ window.onload = () => {
                         var calorie = JSON.parse(attribute.value)
                         //make sure that it's under maxCalories
                         //game end by rules
-                        if(tally.calories < maxCalories){
+                        if(tally.calories < tally.maxCalories){
                             //add the food 
                             tally.calories += Math.ceil(Number(calorie.amount))
                             document.querySelector('#calories strong').innerText = tally.calories
@@ -176,7 +176,20 @@ window.onload = () => {
         document.getElementById('gameOver').style.zIndex = 2000000
         var gameOverScreen = document.querySelector('#gameOver article')
         var ul = document.createElement('ul')
-        delete tally.turn
+        if ((tally.turn > 0) && tally.calories < tally.maxCalories) {
+            tally.wins = true
+            if(tally){
+                console.log(tally)
+                var url = `/confirm`
+                url += `?`
+                for(var [key, value] of Object.entries(tally)){
+                    url += `&${key}=${value}`
+                }
+             }
+            location.assign(url)
+        } else {
+            tally.wins = false
+        }
         for(var [key, value] of Object.entries(tally)){
             var li = document.createElement('li')
             li.innerHTML += `${key} in the amount: ${value} `

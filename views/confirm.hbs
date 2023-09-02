@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>minute.monster game</title>
+    <link href="./assets/fonts/stylesheet.css" rel="stylesheet" />
+    <link href="./assets/css/main.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="gameOver">
+        {{#if wins}}
+            <h1 class="title">You Win!!! <span class="minutemonster"></span>Minute.Monster</span> Didn't get you!!!!</h1>
+        {{/if}}
+        {{#unless wins}}
+            <h1 class="title">The <span class="minutemonster"></span>Minute.Monster</span> GOT YOU!!!!</h1>
+            <h2 class="title">Sorry, Game Over :-(</h2>
+        {{/unless}}
+        <p>You successfully assembled a healthy day of calories!!!</p>
+        <p>Specifics below:</p>
+        <ul>
+        {{#each tally}}
+            <li id="{{@key}}">{{@key}}: <strong>{{this}}</strong></li>
+        {{/each}}
+         </ul>
+        <a id="playButton" href="/game">Play Again???</a>
+    </div>
+</body>
+</html>

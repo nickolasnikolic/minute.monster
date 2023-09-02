@@ -51,6 +51,31 @@ app.get('/game', async (req, res) => {
         })
     })
 
+app.get('/confirm', (req, res) => {
+    var viewData = {}
+    var
+    viewData.wins = req.query.wins
+    viewData.tally = req.query
+
+    var maxCalories = Number(viewData.tally.maxCalories)
+    var caloriesCollected = Number(viewData.tally.calories)
+
+    var ratingDifference = Math.abs( maxCalories - caloriesCollected)
+    //check a ratio against deverse nutrients and average them
+    //leaving off the last win value for rating
+    var totalToAverage = 0
+    var rolodex = Object.values(viewData.tally)
+    var filteredValues = rolodex.filter(e => e != 'true' && e != 2500)
+    for ( var index = filteredValues.length - 1; index > 0; index--) {
+        var v = Math.round(filteredValues[index])
+        totalToAverage = totalToAverage + ( v / (ratingDifference + 1))
+    }
+    
+    viewData.rating = (totalToAverage / (filteredValues.length + viewData.tally.turns)) - viewData.tally.sodium
+
+    res.render('confirm', viewData)
+})
+
 app.get('/',(req, res)=>{
     res.render('index')
 })

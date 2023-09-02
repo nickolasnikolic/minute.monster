@@ -39,8 +39,14 @@
         </section>
     </div>
     <div id="gameOver">
-        <h1 class="title">The <span class="minutemonster"></span>Minute.Monster</span> GOT YOU!!!!</h1>
-        <h2 class="title">Sorry, Game Over :-(</h2>
+        {{#if wins}}
+            <h1 class="title">You Win!!! <span class="minutemonster"></span>Minute.Monster</span> Didn't get you!!!!</h1>
+            <p>You successfully assembled a health day of calories. Specifics</p>
+        {{/if}}
+        {{#unless wins}}
+            <h1 class="title">The <span class="minutemonster"></span>Minute.Monster</span> GOT YOU!!!!</h1>
+            <h2 class="title">Sorry, Game Over :-(</h2>
+        {{/unless}}
          <a id="playButton" href="/game">Play Again???</a>
          <article></article>
     </div>
