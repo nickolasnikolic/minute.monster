@@ -3,6 +3,7 @@
 html,body{
     font-family: 'caviardreams';
     padding: 0px;
+    margin: 0px;
 }
 body, div{
     background-image: linear-gradient(white,rgba(255, 255, 255, 0.829), rgba(204, 204, 204, 0.897)), url(../images/1553285932.svg);
@@ -106,7 +107,7 @@ li{
 div{
     z-index: 1;
 }
-
+ 
 header{
     font-size: 1.2em;
     color: #fee3bb;
@@ -244,7 +245,7 @@ article div:hover ul{
     transition: none;
 }
 
-#glossary{
+#glossary, .usda{
     color: white;
     background-image: url('../images/grass.jpg');
     padding: 3em;
@@ -259,7 +260,7 @@ article div:hover ul{
     list-style: none;
 }
 
-#glossary li:last-child{
+#glossary li:last-child, .usda{
     background-color: rebeccapurple;
     padding: 2em;
 }
