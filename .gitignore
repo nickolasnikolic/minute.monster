@@ -131,3 +131,4 @@ dist
 .pnp.*
 
 assets/images/kitty.svg
+package-lock.json
