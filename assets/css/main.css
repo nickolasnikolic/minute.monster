@@ -1,9 +1,10 @@
 @media screen and (min-width: 1001px) {
-    
-html,body{
+  
+*,html,body{
     font-family: 'caviardreams';
     padding: 0px;
     margin: 0px;
+    z-index: 1;
 }
 body, div{
     background-image: linear-gradient(white,rgba(255, 255, 255, 0.829), rgba(204, 204, 204, 0.897)), url(../images/1553285932.svg);
@@ -260,10 +261,7 @@ article div:hover ul{
     list-style: none;
 }
 
-#glossary li:last-child, .usda{
-    background-color: rebeccapurple;
-    padding: 2em;
-}
+
 #glossary > ul > li:nth-child(9) > ul > li:nth-child(13){
     padding: initial;
 }
