@@ -10,18 +10,20 @@
 </head>
 <body>
     <div id="gameOver">
-        {{#if wins}}
+        <?php if (isset($wins)): ?>
             <h1 class="title">You Win!!! <span class="minutemonster"></span>Minute.Monster</span> Didn't get you!!!!</h1>
-        {{/if}}
-        {{#unless wins}}
+        
+        <?php else: ?>
             <h1 class="title">The <span class="minutemonster"></span>Minute.Monster</span> GOT YOU!!!!</h1>
             <h2 class="title">Sorry, Game Over :-(</h2>
-        {{/unless}}
+        <?php endif; ?>
         <p>You successfully assembled a healthy day of calories!!!</p>
         <ul>
-        {{#each tally}}
-            <li id="{{@key}}">{{@key}}: <strong>{{this}}</strong></li>
-        {{/each}}
+        <?php if (isset( $tally )): ?>
+            <?php foreach ($variable as $key => $value): ?>
+                <li id="<?= $key ?>"><?= $key ?>: <strong><?= $value ?></strong></li>
+            <?php endforeach; ?>
+        <?php endif; ?>
          </ul>
         <a id="playButton" href="/game">Play Again???</a>
     </div>

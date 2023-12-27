@@ -14,40 +14,41 @@
     </header>
     <div class="grid">
         <section id="display">
-                {{#each this}}
-                {{#if description}}
+                <?php foreach( $foods as $food ): ?>
+                <?php if( $food->description ): ?>
             <article>
                 <div class="swivel">
-                    <h2>{{brandOwner}}{{#unless brandOwner}}Generic{{/unless}}</h2>
-                    <h3>{{description}}</h3>
-                    <!--<p>UPC: {{gtinUpc}}</p>-->
+                    <h2><?= $food->brandOwner ? $food->brandOwner : 'Generic'; ?></h2>
+                    <h3><?= $food->description ?></h3>
+                    <p>UPC: <?= $food->gtinUpc ?></p>
                     <ul>
-                        {{#each foodNutrients}}<li><strong>{{this.name}}</strong>: {{this.amount}} in {{this.unitName}}</li>{{/each}}
+                        <?php foreach( $food->foodNutrients as $nutrient): ?>
+                            <li><strong><?= $nutrient->name ?></strong>: <?= $nutrient->amount ?> in <?= $nutrient->unitName ?></li>
+                        <?php endforeach; ?>
                     </ul>
                     <button 
                         class="select"
-                        data-fdcId="{{fdcId}}"
-                        data-name="{{this.description}}"
-                        {{#each foodNutrients}}
-                        data-nutrient-{{@index}}='{"name":"{{{this.name}}}", "amount":{{{this.amount}}}, "unit":"{{{this.unitName}}}" }'
-                        {{/each}}
+                        data-fdcId="<?= $food->fdcId ?>"
+                        data-name="<?= $food->description ?>"
+                        <?php foreach( $food->foodNutrients as $nutrient): ?>
+                        data-nutrient-<?= $index ?>='{"name":"<?= $nutrient->name ?>", "amount":<?= $nutrient->amount ?>, "unit":"<?= $nutrient->unitName ?>" }'
+                        <?php endforeach; ?>
 
                         >Select Me!</button>
                 </div>
             </article>
-                {{/if}}
-                {{/each}}
+                <?php endif; ?>
+                <?php endforeach; ?>
         </section>
     </div>
     <div id="gameOver">
-        {{#if wins}}
-            <h1 class="title">You Win!!! <span class="minutemonster"></span>Minute.Monster</span> Didn't get you!!!!</h1>
+        <?php if (isset($wins)): ?>
+            <h1 class="title">You Win!!! <span class="minutemonster"></span>Minute.Monster</span> Did not get you!!!!</h1>
             <p>You successfully assembled a health day of calories. Specifics</p>
-        {{/if}}
-        {{#unless wins}}
+        <?php else: ?>
             <h1 class="title">The <span class="minutemonster"></span>Minute.Monster</span> GOT YOU!!!!</h1>
             <h2 class="title">Sorry, Game Over :-(</h2>
-        {{/unless}}
+        <?php endif; ?>
          <a id="playButton" href="/game">Play Again???</a>
          <article></article>
     </div>
