@@ -27,7 +27,7 @@
             </ul>
         </article>
         <article>
-            <a id="playButton" href="/game">Play</a>
+            <a id="playButton" href="/minute.monster/game">Play</a>
         </article>
         <article class="usda">
             <h1>Created with United States Department of Agriculture (USDA) data found at: https://fdc.nal.usda.gov/api-guide.html</h1>
