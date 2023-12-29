@@ -2,14 +2,12 @@
   
 *,html,body{
     font-family: 'caviardreams';
-    padding: 0px;
-    margin: 0px;
     z-index: 1;
 }
 body, div{
     background-image: linear-gradient(white,rgba(255, 255, 255, 0.829), rgba(204, 204, 204, 0.897)), url(../images/1553285932.svg);
+    padding: 2.5em;
 }
-
 header{
     background-color: #009dff;
 }
@@ -250,7 +248,6 @@ article div:hover ul{
     color: white;
     background-image: url('../images/grass.jpg');
     padding: 3em;
-    width:100%;
 }
 
 #glossary h1, #glossary h2{

@@ -10,7 +10,7 @@ app.get('/game', async (req, res) => {
     if (req.query) {
         viewData.tally = req.query
     }
-    viewData.randomPage = Math.round((1 + (Math.random() * 500)))
+    viewData.randomPage = Math.round((1 + (Math.random() * 300)))
     
     viewData.target = `https://api.nal.usda.gov/fdc/v1/foods/list?dataType=Branded&pageSize=25&pageNumber=${viewData.randomPage}&api_key=yC2ygW8UjAfcr27AeQiadCKV09hKfo5PvLOcyVog`
     
